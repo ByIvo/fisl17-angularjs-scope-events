@@ -1,0 +1,24 @@
+<div class="chat col-lg-3" ng-controller="ChatController">
+	<div class="container-fluid" >
+		Mensagens de {{newUsernameChat}}:
+	</div>
+	<div class="container-fluid messages">
+		<div class="col-xs-12 chat-message" ng-repeat="message in receivedMessages" ng-class="message.user == user ? 'chat-own' : 'chat-foreign'">
+			<div class="chat-message-user-name">
+				{{message.user.name}} diz: 
+			</div>
+			<div class="chat-message-user-message">
+				{{message.message}} 
+			</div>
+		</div>
+	</div>
+
+	<div class="container-fluid">
+		<div class="col-xs-12 center-text">
+			<input type="text" ng-model="message" placeholder="Insert your message here"/>
+		</div>
+		<div class="col-xs-12 center-text">
+			<button class="btn btn-primary" ng-click="sendMessage()"> Enviar </button>
+		</div>
+	</div>
+</div>
