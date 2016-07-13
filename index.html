@@ -85,54 +85,6 @@
 
 		var app = angular.module('meuApp',[]);;
 
-		app.controller('RoomController', function($scope) {
-			$scope.chats = [];
-			$scope.userName = "";
-
-			$scope.add = function() {
-				$scope.chats.push($scope.userName);
-				$scope.userName= "";
-			};
-		});
-
-		app.controller('ChatController', function($scope, ChatService) {
-			$scope.receivedMessages = [];
-			$scope.user= {name: $scope.newUsernameChat};
-			$scope.message = "";
-			
-			$scope.sendMessage = function() {
-				ChatService.sendMessage($scope.user, $scope.message)
-			};
-
-			$scope.$on("fisl17.new.message", function(event, message) {
-				$scope.receivedMessages.push(message);
-			});
-
-		});
-
-		app.factory('ChatService', ['$rootScope', function($rootScope){
-			
-			var messages = [];
-
-			var broadcastMessage = function(message) {
-				$rootScope.$broadcast("fisl17.new.message", message);
-			};
-
-			function sendMessage(user, message){
-				var newMessage = {};
-
-				newMessage.user = user;
-				newMessage.message = message;
-
-				broadcastMessage(newMessage);
-			}
-
-
-			return {
-				sendMessage: sendMessage
-			};
-		}]);
-
 		app.directive('myChat', function() {
 			return {
 				scope: {
